@@ -153,6 +153,10 @@ mod fp16 {
     #[cfg(target_feature = "fp16")]
     mod inner {
         use super::*;
+        // uint16x8_t is stable; float16x8_t from core::arch::aarch64 is not (stdarch_neon_f16).
+        // The asm treats the register as fp16 regardless of the declared Rust type.
+        #[allow(non_camel_case_types)]
+        type float16x8_t = uint16x8_t;
 
         pub struct CurrentCpuF16 {}
 
