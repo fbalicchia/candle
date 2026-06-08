@@ -583,7 +583,7 @@ pub fn main() -> Result<()> {
     println!("audio config {audio_config:?}");
 
     let channel_count = audio_config.channels() as usize;
-    let in_sample_rate = audio_config.sample_rate().0 as usize;
+    let in_sample_rate = audio_config.sample_rate() as usize;
     let resample_ratio = 16000. / in_sample_rate as f64;
     let mut resampler = rubato::FastFixedIn::new(
         resample_ratio,
